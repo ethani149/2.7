@@ -86,7 +86,9 @@ class _StateEncodeDecodeSelectVC extends State<EncodeDecodeSelectVC> {
     // set up the button
     Widget okButton = FlatButton(
       child: Text("OK"),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pop(context);
+      },
     );
 
     // set up the AlertDialog
