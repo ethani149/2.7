@@ -1,3 +1,4 @@
+import 'package:cypher_advanced_programing/Services/CypherKeyValidator.dart';
 import 'package:cypher_advanced_programing/Services/DecodeService.dart';
 import 'package:cypher_advanced_programing/SharedUI/EncodeDecodeSelectView.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +66,47 @@ class _StateEncodeDecodeSelectVC extends State<EncodeDecodeSelectVC> {
   }
 
   void decodeString() {
-    DecodeService()
-        .decode(keyTextFeildController.text, stringTextFeildController.text);
+    if (keyTextFeildController.text != '') {
+      if (KeyValidator().textFieldValidate(keyTextFeildController.text)) {
+        if (stringTextFeildController.text != '') {
+        } else {
+          showAlertDialog(
+              context, "Please Enter a string to be encoded/decoded");
+        }
+      } else {
+        showAlertDialog(context,
+            "Please Check your encryption key it appers to be invalid");
+      }
+    } else {
+      showAlertDialog(
+          context, "Please Enter an encryption key it appers to be empty");
+    }
+  }
+
+  showAlertDialog(BuildContext context, String errorText) {
+    // set up the button
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Error"),
+      content: Text(errorText),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 }
