@@ -69,6 +69,8 @@ class _StateEncodeDecodeSelectVC extends State<EncodeDecodeSelectVC> {
     if (keyTextFeildController.text != '') {
       if (KeyValidator().textFieldValidate(keyTextFeildController.text)) {
         if (stringTextFeildController.text != '') {
+          print(DecodeService().decode(
+              keyTextFeildController.text, stringTextFeildController.text));
         } else {
           showAlertDialog(
               context, "Please Enter a string to be encoded/decoded");
