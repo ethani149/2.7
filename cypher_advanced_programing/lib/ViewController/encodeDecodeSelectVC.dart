@@ -1,3 +1,4 @@
+import 'package:cypher_advanced_programing/Services/DecodeService.dart';
 import 'package:cypher_advanced_programing/SharedUI/EncodeDecodeSelectView.dart';
 import 'package:flutter/material.dart';
 
@@ -64,6 +65,7 @@ class _StateEncodeDecodeSelectVC extends State<EncodeDecodeSelectVC> {
   }
 
   void decodeString() {
-    print(keyTextFeildController.text);
+    DecodeService()
+        .decode(keyTextFeildController.text, stringTextFeildController.text);
   }
 }
