@@ -1,3 +1,4 @@
+import 'package:cypher_advanced_programing/Services/CypherKeyValidator.dart';
 import 'package:cypher_advanced_programing/Services/DecodeService.dart';
 import 'package:cypher_advanced_programing/SharedUI/EncodeDecodeSelectView.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,18 @@ class _StateEncodeDecodeSelectVC extends State<EncodeDecodeSelectVC> {
           children: [
             RaisedButton(
               onPressed: () {
-                decodeString();
+                if (keyTextFeildController.text != '') {
+                  if (KeyValidator()
+                      .textFieldValidate(keyTextFeildController.text)) {
+                    decodeString();
+                  } else {
+                    showAlertDialog(context,
+                        "Please Check your encryption key it appers to be invalid");
+                  }
+                } else {
+                  showAlertDialog(context,
+                      "Please Enter an encryption key it appers to be empty");
+                }
               },
               child: Text("Encode"),
             ),
@@ -65,7 +77,33 @@ class _StateEncodeDecodeSelectVC extends State<EncodeDecodeSelectVC> {
   }
 
   void decodeString() {
-    DecodeService()
-        .decode(keyTextFeildController.text, stringTextFeildController.text);
+    print(KeyValidator().textFieldValidate(keyTextFeildController.text));
+    // DecodeService()
+    //     .decode(keyTextFeildController.text, stringTextFeildController.text);
+  }
+
+  showAlertDialog(BuildContext context, String errorText) {
+    // set up the button
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () {},
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Error"),
+      content: Text(errorText),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 }
