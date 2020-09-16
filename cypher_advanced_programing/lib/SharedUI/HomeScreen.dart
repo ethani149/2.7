@@ -1,3 +1,4 @@
+import 'package:cypher_advanced_programing/ViewController/encodeDecodeSelectVC.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreenView extends StatelessWidget {
@@ -14,7 +15,13 @@ class HomeScreenView extends StatelessWidget {
           ),
         ),
         RaisedButton(
-          onPressed: null,
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        EncodeDecodeSelectVC())); // Pushing New VC into Navigation Stack
+          },
           child: Text("Start"),
         )
       ],
