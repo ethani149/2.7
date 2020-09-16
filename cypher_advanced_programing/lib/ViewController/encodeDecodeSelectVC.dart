@@ -2,6 +2,7 @@ import 'package:cypher_advanced_programing/Services/CypherKeyValidator.dart';
 import 'package:cypher_advanced_programing/Services/DecodeService.dart';
 import 'package:cypher_advanced_programing/SharedUI/EncodeDecodeSelectView.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class EncodeDecodeSelectVC extends StatefulWidget {
   @override
@@ -20,7 +21,7 @@ class _StateEncodeDecodeSelectVC extends State<EncodeDecodeSelectVC> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Please Enter your encryption key and then select encode or decode",
+              "Please Enter your encryption key and your text to be Encrypted/Decrypted then select encode or decode",
               style: TextStyle(
                 fontFamily: 'InterV_',
                 color: Color(0xffffffff),
@@ -55,35 +56,38 @@ class _StateEncodeDecodeSelectVC extends State<EncodeDecodeSelectVC> {
                 ),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: () {
-                    encodeString();
-                  },
-                  child: Container(
-                      width: 100,
-                      height: 25,
-                      color: Colors.blueGrey,
-                      child: Center(child: Text("Encode"))),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 20),
-                ),
-                GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: () {
-                    decodeString();
-                  },
-                  child: Container(
-                      width: 100,
-                      height: 25,
-                      color: Colors.blueGrey,
-                      child: Center(child: Text("Decode"))),
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: () {
+                      encodeString();
+                    },
+                    child: Container(
+                        width: 100,
+                        height: 25,
+                        color: Colors.blueGrey,
+                        child: Center(child: Text("Encode"))),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 20),
+                  ),
+                  GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: () {
+                      decodeString();
+                    },
+                    child: Container(
+                        width: 100,
+                        height: 25,
+                        color: Colors.blueGrey,
+                        child: Center(child: Text("Decode"))),
+                  ),
+                ],
+              ),
             )
           ],
         ));
@@ -96,7 +100,7 @@ class _StateEncodeDecodeSelectVC extends State<EncodeDecodeSelectVC> {
           String codeString = DecodeService().decode(
               keyTextFeildController.text, stringTextFeildController.text);
           showResultDialog(
-              context, codeString, keyTextFeildController.text, "Encrypted");
+              context, codeString, keyTextFeildController.text, " Encrypted ");
         } else {
           showAlertDialog(context, "Please Enter a string to be decoded");
         }
@@ -119,7 +123,7 @@ class _StateEncodeDecodeSelectVC extends State<EncodeDecodeSelectVC> {
             stringTextFeildController.text,
           );
           showResultDialog(
-              context, codeString, keyTextFeildController.text, "Decrypted");
+              context, codeString, keyTextFeildController.text, " Decrypted ");
         } else {
           showAlertDialog(context, "Please Enter a string to be encoded");
         }
@@ -182,7 +186,7 @@ class _StateEncodeDecodeSelectVC extends State<EncodeDecodeSelectVC> {
     Widget copyString = GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () {
-        Navigator.pop(context);
+        Clipboard.setData(ClipboardData(text: codeString));
       },
       child: Container(
           width: 150,

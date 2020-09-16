@@ -10,6 +10,7 @@ class KeyTextFeild extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+        textAlign: TextAlign.center,
         autocorrect: false,
         controller: keyTextFeildController,
         style: TextStyle(
