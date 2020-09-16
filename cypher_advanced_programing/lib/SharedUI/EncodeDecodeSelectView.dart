@@ -13,16 +13,27 @@ class EncodeDecodeSelectView extends StatelessWidget {
       children: [
         Text(
             "Please Enter your encryption key and then select encode or decode"),
-        Container(
-          width: 100,
-          child: KeyTextFeild(
-            keyTextFeildController: keyTextFeildController,
-            hintText: "Enter encryption key",
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 200,
+                child: KeyTextFeild(
+                  keyTextFeildController: keyTextFeildController,
+                  hintText: "Enter encryption key",
+                ),
+              ),
+            ],
           ),
         ),
-        KeyTextFeild(
-          keyTextFeildController: stringTextFeildController,
-          hintText: "Enter String to be encrypted or decrypted",
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: KeyTextFeild(
+            keyTextFeildController: stringTextFeildController,
+            hintText: "Enter String to be encrypted or decrypted",
+          ),
         )
       ],
     );
@@ -39,6 +50,7 @@ class KeyTextFeild extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: keyTextFeildController,
+      textAlign: TextAlign.center,
       decoration: new InputDecoration(
           border: InputBorder.none,
           focusedBorder: InputBorder.none,
