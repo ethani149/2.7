@@ -20,9 +20,9 @@ class DecodeService {
         continue;
       } else {}
 
-      int countOfcharCycles = (uTFoffset + _key - uTFoffset) %
+      int countOfcharCycles = (_decimalUTF + _key - uTFoffset) %
           26; //get count of cycles through char set
-      String tempChar = String.fromCharCode(countOfcharCycles + _key);
+      String tempChar = String.fromCharCode(countOfcharCycles + uTFoffset);
       print(tempChar);
       outText += tempChar; //create output char and add to output
     }
