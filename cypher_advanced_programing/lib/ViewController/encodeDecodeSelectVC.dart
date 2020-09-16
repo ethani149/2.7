@@ -16,6 +16,7 @@ class _StateEncodeDecodeSelectVC extends State<EncodeDecodeSelectVC> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
             "Please Enter your encryption key and then select encode or decode"),
@@ -44,20 +45,28 @@ class _StateEncodeDecodeSelectVC extends State<EncodeDecodeSelectVC> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            RaisedButton(
-              onPressed: () {
+            GestureDetector(
+              onTap: () {
                 encodeString();
               },
-              child: Text("Encode"),
+              child: Container(
+                  width: 100,
+                  height: 25,
+                  color: Colors.blueGrey,
+                  child: Center(child: Text("Encode"))),
             ),
             Padding(
               padding: EdgeInsets.only(left: 20),
             ),
-            RaisedButton(
-              onPressed: () {
+            GestureDetector(
+              onTap: () {
                 decodeString();
               },
-              child: Text("Decode"),
+              child: Container(
+                  width: 100,
+                  height: 25,
+                  color: Colors.blueGrey,
+                  child: Center(child: Text("Decode"))),
             ),
           ],
         )
@@ -105,11 +114,15 @@ class _StateEncodeDecodeSelectVC extends State<EncodeDecodeSelectVC> {
 
   showAlertDialog(BuildContext context, String errorText) {
     // set up the button
-    Widget okButton = FlatButton(
-      child: Text("OK"),
-      onPressed: () {
+    Widget okButton = GestureDetector(
+      onTap: () {
         Navigator.pop(context);
       },
+      child: Container(
+          width: 100,
+          height: 25,
+          color: Colors.blueGrey,
+          child: Center(child: Text("Ok"))),
     );
 
     // set up the AlertDialog

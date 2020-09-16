@@ -5,6 +5,7 @@ class HomeScreenView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 20),
@@ -14,16 +15,20 @@ class HomeScreenView extends StatelessWidget {
                 "This is a encryption and decryprion program you use this program you will need a encryption key"),
           ),
         ),
-        RaisedButton(
-          onPressed: () {
+        GestureDetector(
+          onTap: () {
             Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) =>
                         EncodeDecodeSelectVC())); // Pushing New VC into Navigation Stack
           },
-          child: Text("Start"),
-        )
+          child: Container(
+              width: 100,
+              height: 25,
+              color: Colors.blueGrey,
+              child: Center(child: Text("Start"))),
+        ),
       ],
     );
   }
