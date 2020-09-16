@@ -12,7 +12,16 @@ class HomeScreenView extends StatelessWidget {
           child: Container(
             width: 300,
             child: Text(
-                "This is a encryption and decryprion program you use this program you will need a encryption key"),
+              "This is a encryption and decryprion program you use this program you will need a encryption key",
+              style: TextStyle(
+                fontFamily: 'InterV_',
+                color: Color(0xffffffff),
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                fontStyle: FontStyle.normal,
+                letterSpacing: 0,
+              ),
+            ),
           ),
         ),
         GestureDetector(
