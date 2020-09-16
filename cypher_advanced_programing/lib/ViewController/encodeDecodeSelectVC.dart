@@ -46,18 +46,7 @@ class _StateEncodeDecodeSelectVC extends State<EncodeDecodeSelectVC> {
           children: [
             RaisedButton(
               onPressed: () {
-                if (keyTextFeildController.text != '') {
-                  if (KeyValidator()
-                      .textFieldValidate(keyTextFeildController.text)) {
-                    decodeString();
-                  } else {
-                    showAlertDialog(context,
-                        "Please Check your encryption key it appers to be invalid");
-                  }
-                } else {
-                  showAlertDialog(context,
-                      "Please Enter an encryption key it appers to be empty");
-                }
+                decodeString();
               },
               child: Text("Encode"),
             ),
@@ -77,9 +66,21 @@ class _StateEncodeDecodeSelectVC extends State<EncodeDecodeSelectVC> {
   }
 
   void decodeString() {
-    print(KeyValidator().textFieldValidate(keyTextFeildController.text));
-    // DecodeService()
-    //     .decode(keyTextFeildController.text, stringTextFeildController.text);
+    if (keyTextFeildController.text != '') {
+      if (KeyValidator().textFieldValidate(keyTextFeildController.text)) {
+        if (stringTextFeildController.text != '') {
+        } else {
+          showAlertDialog(
+              context, "Please Enter a string to be encoded/decoded");
+        }
+      } else {
+        showAlertDialog(context,
+            "Please Check your encryption key it appers to be invalid");
+      }
+    } else {
+      showAlertDialog(
+          context, "Please Enter an encryption key it appers to be empty");
+    }
   }
 
   showAlertDialog(BuildContext context, String errorText) {
