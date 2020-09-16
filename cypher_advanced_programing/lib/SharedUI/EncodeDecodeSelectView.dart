@@ -1,44 +1,5 @@
 import 'package:flutter/material.dart';
-
-class EncodeDecodeSelectView extends StatelessWidget {
-  final TextEditingController keyTextFeildController;
-  final TextEditingController stringTextFeildController;
-
-  const EncodeDecodeSelectView(
-      {Key key, this.keyTextFeildController, this.stringTextFeildController})
-      : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-            "Please Enter your encryption key and then select encode or decode"),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 200,
-                child: KeyTextFeild(
-                  keyTextFeildController: keyTextFeildController,
-                  hintText: "Enter encryption key",
-                ),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: KeyTextFeild(
-            keyTextFeildController: stringTextFeildController,
-            hintText: "Enter String to be encrypted or decrypted",
-          ),
-        )
-      ],
-    );
-  }
-}
+import 'package:cypher_advanced_programing/ViewController/encodeDecodeSelectVC.dart';
 
 class KeyTextFeild extends StatelessWidget {
   //a Widget of the Cypher Key Text Feild
