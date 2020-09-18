@@ -10,15 +10,38 @@ class KeyTextFeild extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: keyTextFeildController,
-      textAlign: TextAlign.center,
-      decoration: new InputDecoration(
-          border: InputBorder.none,
-          focusedBorder: InputBorder.none,
-          enabledBorder: InputBorder.none,
-          errorBorder: InputBorder.none,
-          disabledBorder: InputBorder.none,
-          hintText: hintText),
-    );
+        textAlign: TextAlign.center,
+        autocorrect: false,
+        controller: keyTextFeildController,
+        style: TextStyle(
+          fontFamily: 'InterV_',
+          color: Color(0xffffffff),
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+          fontStyle: FontStyle.normal,
+          letterSpacing: 0,
+        ),
+        //maxLines: 4,
+        //textAlignVertical: TextAlignVertical.bottom,
+        onSubmitted: (value) {},
+        obscureText: false,
+        decoration: InputDecoration(
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blue),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.white),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            hintText: hintText,
+            hintStyle: TextStyle(
+              fontFamily: 'InterV_',
+              color: Color(0xffffffff),
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              fontStyle: FontStyle.normal,
+              letterSpacing: 0,
+            )));
   }
 }
