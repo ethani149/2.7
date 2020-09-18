@@ -1,6 +1,6 @@
 import 'package:cypher_advanced_programing/Services/CypherKeyValidator.dart';
 import 'package:cypher_advanced_programing/Services/DecodeService.dart';
-import 'package:cypher_advanced_programing/SharedUI/EncodeDecodeSelectView.dart';
+import 'package:cypher_advanced_programing/SharedUI/KeyTextField.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
