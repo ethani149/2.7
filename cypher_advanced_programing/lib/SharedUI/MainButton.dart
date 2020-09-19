@@ -13,6 +13,7 @@ class MainButton extends StatelessWidget {
       color: Colors.blueGrey,
       splashColor: Colors.grey,
       textColor: Colors.white,
+      onLongPress: pressFunction,
       onPressed: pressFunction,
       child: Text(buttonText),
     );

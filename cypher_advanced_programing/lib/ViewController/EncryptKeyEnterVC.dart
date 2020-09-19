@@ -2,6 +2,7 @@ import 'package:cypher_advanced_programing/Model/EncodeDecodeEnum.dart';
 import 'package:cypher_advanced_programing/SharedUI/KeyTextField.dart';
 import 'package:cypher_advanced_programing/SharedUI/MainButton.dart';
 import 'package:cypher_advanced_programing/ViewController/EncryptTextEnterVC.dart';
+import 'package:cypher_advanced_programing/ViewController/ErrorAlertDialog.dart';
 import 'package:flutter/material.dart';
 
 class EncryptKeyEnterVC extends StatefulWidget {
@@ -31,7 +32,7 @@ class _EncryptKeyEnterVC extends State<EncryptKeyEnterVC> {
                   child: KeyTextFeild(
                     keyTextFeildController: keyText,
                     onSubmit: () {
-                      pushToTextVC(widget.encodeType, keyText.text);
+                      checkKey(widget.encodeType, keyText.text);
                     },
                     hintText: "Enter Encryption Key",
                   ),
@@ -45,7 +46,7 @@ class _EncryptKeyEnterVC extends State<EncryptKeyEnterVC> {
               MainButton(
                 buttonText: "Continue",
                 pressFunction: () {
-                  pushToTextVC(widget.encodeType, keyText.text);
+                  checkKey(widget.encodeType, keyText.text);
                 },
               )
             ],
@@ -53,6 +54,30 @@ class _EncryptKeyEnterVC extends State<EncryptKeyEnterVC> {
         ],
       ),
     );
+  }
+
+  bool keyValidate(String text) {
+    final validChar = RegExp('[0-9]');
+    return validChar.hasMatch(text);
+  }
+
+  void checkKey(CypherType encodeType, String cypherKey) {
+    if (keyValidate(cypherKey)) {
+      pushToTextVC(encodeType, cypherKey);
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return ErrorAlertDialog(
+            okAction: () {
+              Navigator.pop(context);
+            },
+            alertBodyText: "Please Check Key",
+            alertTitle: "Error",
+          );
+        },
+      );
+    }
   }
 
   void pushToTextVC(CypherType encodeType, String cypherKey) {
