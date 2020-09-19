@@ -62,22 +62,36 @@ class _EncryptKeyEnterVC extends State<EncryptKeyEnterVC> {
   }
 
   void checkKey(CypherType encodeType, String cypherKey) {
-    if (keyValidate(cypherKey)) {
-      pushToTextVC(encodeType, cypherKey);
+    if (cypherKey != "") {
+      if (keyValidate(cypherKey)) {
+        pushToTextVC(encodeType, cypherKey);
+      } else {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return ErrorAlertDialog(
+              okAction: () {
+                Navigator.pop(context);
+              },
+              alertBodyText:
+                  "It appers your key is invalid please check it and try again",
+              alertTitle: "Error",
+            );
+          },
+        );
+      }
     } else {
       showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return ErrorAlertDialog(
-            okAction: () {
-              Navigator.pop(context);
-            },
-            alertBodyText:
-                "It appers your key is invalid please check it and try again",
-            alertTitle: "Error",
-          );
-        },
-      );
+          context: context,
+          builder: (BuildContext context) {
+            return ErrorAlertDialog(
+              okAction: () {
+                Navigator.pop(context);
+              },
+              alertBodyText: "Please Enter Encryption Key",
+              alertTitle: "Error",
+            );
+          });
     }
   }
 
