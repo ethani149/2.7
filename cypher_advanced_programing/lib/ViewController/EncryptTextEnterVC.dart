@@ -1,19 +1,20 @@
 import 'package:cypher_advanced_programing/Model/EncodeDecodeEnum.dart';
+import 'package:cypher_advanced_programing/Services/DecodeService.dart';
 import 'package:cypher_advanced_programing/SharedUI/KeyTextField.dart';
 import 'package:cypher_advanced_programing/SharedUI/MainButton.dart';
-import 'package:cypher_advanced_programing/ViewController/EncryptTextEnterVC.dart';
 import 'package:flutter/material.dart';
 
-class EncryptKeyEnterVC extends StatefulWidget {
+class EncryptTextEnterVC extends StatefulWidget {
   final CypherType encodeType;
-
-  const EncryptKeyEnterVC({Key key, this.encodeType}) : super(key: key);
+  final String cypherKey;
+  const EncryptTextEnterVC({Key key, this.encodeType, this.cypherKey})
+      : super(key: key);
   @override
-  _EncryptKeyEnterVC createState() => _EncryptKeyEnterVC();
+  _EncryptTextEnterVC createState() => _EncryptTextEnterVC();
 }
 
-class _EncryptKeyEnterVC extends State<EncryptKeyEnterVC> {
-  TextEditingController keyText = TextEditingController();
+class _EncryptTextEnterVC extends State<EncryptTextEnterVC> {
+  TextEditingController stringText = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,11 +30,13 @@ class _EncryptKeyEnterVC extends State<EncryptKeyEnterVC> {
                 Container(
                   width: 300,
                   child: KeyTextFeild(
-                    keyTextFeildController: keyText,
                     onSubmit: () {
-                      checkKey(widget.encodeType, keyText.text);
+                      encrypt();
                     },
-                    hintText: "Enter Encryption Key",
+                    keyTextFeildController: stringText,
+                    hintText: widget.encodeType == CypherType.encode
+                        ? "Enter Text To Be Encrypted"
+                        : "Enter Text To Be Decrypted",
                   ),
                 ),
               ],
@@ -45,7 +48,7 @@ class _EncryptKeyEnterVC extends State<EncryptKeyEnterVC> {
               MainButton(
                 buttonText: "Continue",
                 pressFunction: () {
-                  checkKey(widget.encodeType, keyText.text);
+                  encrypt();
                 },
               )
             ],
@@ -55,15 +58,11 @@ class _EncryptKeyEnterVC extends State<EncryptKeyEnterVC> {
     );
   }
 
-  void checkKey(CypherType encodeType, String cypherKey) {}
-  void pushToTextVC(CypherType encodeType, String cypherKey) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (context) => EncryptTextEnterVC(
-                encodeType: encodeType,
-                cypherKey: cypherKey,
-              )),
+  void encrypt() {
+    String codeString = DecodeService().encode(
+      widget.cypherKey,
+      stringText.text,
     );
+    print(codeString);
   }
 }

@@ -1,3 +1,4 @@
+import 'package:cypher_advanced_programing/Model/EncodeDecodeEnum.dart';
 import 'package:cypher_advanced_programing/SharedUI/MainButton.dart';
 import 'package:cypher_advanced_programing/ViewController/EncryptKeyEnterVC.dart';
 import 'package:cypher_advanced_programing/ViewController/encodeDecodeSelectVC.dart';
@@ -21,7 +22,10 @@ class _HomeScreenView extends State<HomeScreenView> {
               pressFunction: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => EncryptKeyEnterVC()),
+                  MaterialPageRoute(
+                      builder: (context) => EncryptKeyEnterVC(
+                            encodeType: CypherType.encode,
+                          )),
                 );
               },
               buttonText: "Encode",
@@ -29,7 +33,15 @@ class _HomeScreenView extends State<HomeScreenView> {
             Padding(
               padding: const EdgeInsets.all(8.0), //spacer
               child: MainButton(
-                pressFunction: null,
+                pressFunction: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => EncryptKeyEnterVC(
+                              encodeType: CypherType.decode,
+                            )),
+                  );
+                },
                 buttonText: "Decode",
               ),
             )
