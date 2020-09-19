@@ -2,7 +2,9 @@ import 'package:cypher_advanced_programing/Model/EncodeDecodeEnum.dart';
 import 'package:cypher_advanced_programing/Services/DecodeService.dart';
 import 'package:cypher_advanced_programing/SharedUI/KeyTextField.dart';
 import 'package:cypher_advanced_programing/SharedUI/MainButton.dart';
+import 'package:cypher_advanced_programing/ViewController/ResultAlertDialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class EncryptTextEnterVC extends StatefulWidget {
   final CypherType encodeType;
@@ -71,6 +73,23 @@ class _EncryptTextEnterVC extends State<EncryptTextEnterVC> {
         stringText.text,
       );
     }
-    print(codeString);
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return ResultAlertDialog(
+          okAction: () {
+            Navigator.of(context).popUntil((route) => route.isFirst);
+          },
+          alertBodyText: widget.encodeType == CypherType.encode
+              ? "Your Encrypted String: " + codeString
+              : "Your Decrypted String: " + codeString,
+          alertTitle: "Result",
+          copyButtonAction: () {
+            Clipboard.setData(ClipboardData(text: codeString));
+            Navigator.of(context).popUntil((route) => route.isFirst);
+          },
+        );
+      },
+    );
   }
 }
