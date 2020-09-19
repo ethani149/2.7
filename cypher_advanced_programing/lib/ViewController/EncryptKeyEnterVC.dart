@@ -55,6 +55,17 @@ class _EncryptKeyEnterVC extends State<EncryptKeyEnterVC> {
     );
   }
 
+  bool keyValidate(String text) {
+    final validChar = RegExp('[0-9]');
+    return validChar.hasMatch(text);
+  }
+
+  void checkKey(CypherType encodeType, String cypherKey) {
+    if (keyValidate(cypherKey)) {
+      pushToTextVC(encodeType, cypherKey);
+    } else {}
+  }
+
   void pushToTextVC(CypherType encodeType, String cypherKey) {
     Navigator.push(
       context,
