@@ -3,9 +3,16 @@ import 'package:cypher_advanced_programing/ViewController/encodeDecodeSelectVC.d
 
 class KeyTextFeild extends StatelessWidget {
   //a Widget of the Cypher Key Text Feild
+  final Function onChanged;
+  final Function onSubmit;
   final TextEditingController keyTextFeildController;
   final String hintText;
-  const KeyTextFeild({Key key, this.keyTextFeildController, this.hintText})
+  const KeyTextFeild(
+      {Key key,
+      this.keyTextFeildController,
+      this.hintText,
+      this.onChanged,
+      this.onSubmit})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -23,7 +30,10 @@ class KeyTextFeild extends StatelessWidget {
         ),
         //maxLines: 4,
         //textAlignVertical: TextAlignVertical.bottom,
-        onSubmitted: (value) {},
+        onChanged: onChanged,
+        onSubmitted: (value) {
+          onSubmit();
+        },
         obscureText: false,
         decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(

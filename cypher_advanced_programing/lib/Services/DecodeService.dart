@@ -2,7 +2,7 @@ import 'dart:core';
 
 class DecodeService {
   String decode(String key, String text) {
-    int _key = int.parse(key); //Decode String of key to int
+    int _key = int.parse(key); //Decode String of key to UTF16 int
     String outText = ""; // create output text
     int uTFoffset;
     for (int i = 0; i < text.length; i++) {
