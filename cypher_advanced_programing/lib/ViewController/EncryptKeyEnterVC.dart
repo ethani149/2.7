@@ -31,7 +31,7 @@ class _EncryptKeyEnterVC extends State<EncryptKeyEnterVC> {
                   child: KeyTextFeild(
                     keyTextFeildController: keyText,
                     onSubmit: () {
-                      checkKey(widget.encodeType, keyText.text);
+                      pushToTextVC(widget.encodeType, keyText.text);
                     },
                     hintText: "Enter Encryption Key",
                   ),
@@ -45,7 +45,7 @@ class _EncryptKeyEnterVC extends State<EncryptKeyEnterVC> {
               MainButton(
                 buttonText: "Continue",
                 pressFunction: () {
-                  checkKey(widget.encodeType, keyText.text);
+                  pushToTextVC(widget.encodeType, keyText.text);
                 },
               )
             ],
@@ -55,7 +55,6 @@ class _EncryptKeyEnterVC extends State<EncryptKeyEnterVC> {
     );
   }
 
-  void checkKey(CypherType encodeType, String cypherKey) {}
   void pushToTextVC(CypherType encodeType, String cypherKey) {
     Navigator.push(
       context,
