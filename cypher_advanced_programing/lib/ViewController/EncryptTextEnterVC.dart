@@ -6,6 +6,8 @@ import 'package:cypher_advanced_programing/ViewController/ResultAlertDialog.dart
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'ErrorAlertDialog.dart';
+
 class EncryptTextEnterVC extends StatefulWidget {
   final CypherType encodeType;
   final String cypherKey;
@@ -33,7 +35,7 @@ class _EncryptTextEnterVC extends State<EncryptTextEnterVC> {
                   width: 300,
                   child: KeyTextFeild(
                     onSubmit: () {
-                      encrypt();
+                      checkStringToEncrypt();
                     },
                     keyTextFeildController: stringText,
                     hintText: widget.encodeType == CypherType.encode
@@ -50,7 +52,7 @@ class _EncryptTextEnterVC extends State<EncryptTextEnterVC> {
               MainButton(
                 buttonText: "Continue",
                 pressFunction: () {
-                  encrypt();
+                  checkStringToEncrypt();
                 },
               )
             ],
@@ -58,6 +60,44 @@ class _EncryptTextEnterVC extends State<EncryptTextEnterVC> {
         ],
       ),
     );
+  }
+
+  void checkStringToEncrypt() {
+    if (stringText.text != "") {
+      final validChar = RegExp('[0-9A-Za-z#@!%&*()-+="&.?<>\~]');
+      bool isValid = validChar.hasMatch(stringText.text);
+
+      if (isValid) {
+        encrypt();
+      } else {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return ErrorAlertDialog(
+                okAction: () {
+                  Navigator.pop(context);
+                },
+                alertBodyText:
+                    "Sorry it appers your string has charechter I cant handle I can handle all english charechter and most special charecters",
+                alertTitle: "Error",
+              );
+            });
+      }
+    } else {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return ErrorAlertDialog(
+              okAction: () {
+                Navigator.pop(context);
+              },
+              alertBodyText: widget.encodeType == CypherType.encode
+                  ? "Please Enter String to be encrypted"
+                  : "Please Enter String to be Decrypted",
+              alertTitle: "Error",
+            );
+          });
+    }
   }
 
   void encrypt() {
