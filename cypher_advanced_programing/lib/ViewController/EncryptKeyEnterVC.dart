@@ -72,7 +72,8 @@ class _EncryptKeyEnterVC extends State<EncryptKeyEnterVC> {
             okAction: () {
               Navigator.pop(context);
             },
-            alertBodyText: "Please Check Key",
+            alertBodyText:
+                "It appers your key is invalid please check it and try again",
             alertTitle: "Error",
           );
         },

@@ -8,20 +8,11 @@ class DecodeService {
     for (int i = 0; i < text.length; i++) {
       //lop through each char in string
       int _decimalUTF = text.codeUnitAt(i); //encode string to UTF16
-      if (_decimalUTF < 91 && _decimalUTF > 40) {
-        // is Capital
-        uTFoffset = 65;
-      } else if (_decimalUTF < 123 && _decimalUTF > 96) {
-        // is Lowercase
-        uTFoffset = 97;
-      } else if (_decimalUTF == 32) {
-        //Is space
-        outText += " "; //add space to outText
-        continue;
-      } else {}
+      int countOfcharCycles;
+      uTFoffset = 32; // start char handled
 
-      int countOfcharCycles = (_decimalUTF + _key - uTFoffset) %
-          26; //get count of cycles through char set
+      countOfcharCycles = (_decimalUTF + _key - uTFoffset) %
+          95; //get count of cycles through char set
       String tempChar = String.fromCharCode(countOfcharCycles + uTFoffset);
       outText += tempChar; //create output char and add to output
     }
@@ -29,26 +20,17 @@ class DecodeService {
   }
 
   String encode(String key, String text) {
-    int _key = int.parse(key); //Decode String of key to int
+    int _key = int.parse(key); //Decode String of key to UTF16 int
     String outText = ""; // create output text
     int uTFoffset;
     for (int i = 0; i < text.length; i++) {
       //lop through each char in string
       int _decimalUTF = text.codeUnitAt(i); //encode string to UTF16
-      if (_decimalUTF < 91 && _decimalUTF > 40) {
-        // is Capital
-        uTFoffset = 65;
-      } else if (_decimalUTF < 123 && _decimalUTF > 96) {
-        // is Lowercase
-        uTFoffset = 97;
-      } else if (_decimalUTF == 32) {
-        //Is space
-        outText += " "; //add space to outText
-        continue;
-      } else {}
+      int countOfcharCycles;
+      uTFoffset = 32; // start char handled
 
-      int countOfcharCycles = (_decimalUTF - _key - uTFoffset) %
-          26; //get count of cycles through char set
+      countOfcharCycles = (_decimalUTF - _key - uTFoffset) %
+          95; //get count of cycles through char set
       String tempChar = String.fromCharCode(countOfcharCycles + uTFoffset);
       outText += tempChar; //create output char and add to output
     }
