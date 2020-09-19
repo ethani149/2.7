@@ -24,7 +24,8 @@ class _HomeScreenView extends State<HomeScreenView> {
                   MaterialPageRoute(
                       builder: (context) => EncryptKeyEnterVC(
                             encodeType: CypherType.encode,
-                          )),
+                          ),
+                      settings: RouteSettings(name: "First")),
                 );
               },
               buttonText: "Encode",
@@ -38,7 +39,8 @@ class _HomeScreenView extends State<HomeScreenView> {
                     MaterialPageRoute(
                         builder: (context) => EncryptKeyEnterVC(
                               encodeType: CypherType.decode,
-                            )),
+                            ),
+                        settings: RouteSettings(name: "First")),
                   );
                 },
                 buttonText: "Decode",
