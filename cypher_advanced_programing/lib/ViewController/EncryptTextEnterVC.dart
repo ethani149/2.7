@@ -59,10 +59,18 @@ class _EncryptTextEnterVC extends State<EncryptTextEnterVC> {
   }
 
   void encrypt() {
-    String codeString = DecodeService().encode(
-      widget.cypherKey,
-      stringText.text,
-    );
+    String codeString = '';
+    if (widget.encodeType == CypherType.encode) {
+      codeString = DecodeService().encode(
+        widget.cypherKey,
+        stringText.text,
+      );
+    } else {
+      codeString = DecodeService().decode(
+        widget.cypherKey,
+        stringText.text,
+      );
+    }
     print(codeString);
   }
 }
