@@ -31,6 +31,11 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: BackButton(color: Colors.white),
+        //title: Text("Encrypter"),
+        backgroundColor: Colors.black,
+      ),
       backgroundColor: Colors.black,
       body: Center(child: HomeScreenView()),
     );

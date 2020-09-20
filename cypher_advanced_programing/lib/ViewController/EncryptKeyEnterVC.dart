@@ -18,6 +18,11 @@ class _EncryptKeyEnterVC extends State<EncryptKeyEnterVC> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: BackButton(color: Colors.white),
+        //title: Text("Encrypter"),
+        backgroundColor: Colors.black,
+      ),
       backgroundColor: Colors.black,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -57,8 +62,13 @@ class _EncryptKeyEnterVC extends State<EncryptKeyEnterVC> {
   }
 
   bool keyValidate(String text) {
-    final validChar = RegExp('[0-9]');
-    return validChar.hasMatch(text);
+    int _key;
+    try {
+      _key = int.parse(text);
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
   void checkKey(CypherType encodeType, String cypherKey) {

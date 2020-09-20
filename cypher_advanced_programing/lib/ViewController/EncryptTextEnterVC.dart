@@ -22,6 +22,11 @@ class _EncryptTextEnterVC extends State<EncryptTextEnterVC> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: BackButton(color: Colors.white),
+        //title: Text("Encrypter"),
+        backgroundColor: Colors.black,
+      ),
       backgroundColor: Colors.black,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
