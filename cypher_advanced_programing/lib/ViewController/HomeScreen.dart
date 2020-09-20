@@ -28,7 +28,7 @@ class _HomeScreenView extends State<HomeScreenView> {
                       settings: RouteSettings(name: "First")),
                 );
               },
-              buttonText: "Encode",
+              buttonText: "Encrypt",
             ),
             Padding(
               padding: const EdgeInsets.all(8.0), //spacer
@@ -43,7 +43,7 @@ class _HomeScreenView extends State<HomeScreenView> {
                         settings: RouteSettings(name: "First")),
                   );
                 },
-                buttonText: "Decode",
+                buttonText: "Decrypt",
               ),
             )
           ],
